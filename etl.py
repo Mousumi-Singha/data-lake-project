@@ -37,7 +37,7 @@ def process_song_data(spark, input_data, output_data):
             This is the path to where the parquet files will be written.
     """
     # get filepath to song data file
-    song_data = input_data + 'song_data/A/A/A/*.json'
+    song_data = input_data + 'song_data/*/*/*/*.json'
 
     
     # read song data file
@@ -83,7 +83,7 @@ def process_log_data(spark, input_data, output_data):
             This is the path to where the parquet files will be written.
     """
     # get filepath to log data file
-    log_data = input_data + 'log_data/2018/11/2018-11-01-events.json'
+    log_data = input_data + 'log_data/*/*/*.json'
 
     # read log data file
     df = spark.read.json(log_data)
@@ -127,7 +127,7 @@ def process_log_data(spark, input_data, output_data):
                                           'time/time.parquet'), 'overwrite')
 
     # read in song data to use for songplays table
-    song_df = spark.read.json(input_data + 'song_data/A/A/A/*.json')
+    song_df = spark.read.json(input_data + 'song_data/*/*/*/*.json')
 
     # extract columns from joined song and log datasets to create songplays table 
     dfActions = dfActions.alias('log_df')
